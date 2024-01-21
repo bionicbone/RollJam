@@ -7,8 +7,8 @@ It was based on the publications of Samy Kamkar, big up for him (https://samy.pl
 The script was written for a Teensy 3.1, but it can be easily converted to any other micro controller.
 
 **Correct Pin Numbers for Teensy 3.2**  
-cs_rx = 10  
-cs_jam = 20  
+cs_rx = 5  
+cs_jam = 6  
 gdo0_rx = 2  
 gdo0_jam = 3  
 mosi = 11  
