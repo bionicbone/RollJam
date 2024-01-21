@@ -15,6 +15,8 @@ mosi = 11
 miso = 12  
 clk = 13  
 
+TODO -- Original Code is set up for FSK. I need ASK if I stand any chance of hacking my project
+
 **Good Reference Project, same code but not forked, wiring diagram pins are out of sync with their code.**  
 [https://github.com/CR11CS/RollJam-315MHz-433MHz](https://github.com/CR11CS/RollJam-315MHz-433MHz)   
 **From CR11CS Project**  
