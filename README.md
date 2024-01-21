@@ -4,11 +4,10 @@ It was based on the publications of Samy Kamkar, big up for him (https://samy.pl
 The script was written for a Teensy 3.1, but it can be easily converted to any other micro controller.
 
 **Pin Numbers**
-int cs_rx = 10;
-int cs_jam = 20;
-int gdo0_rx = 2;
-int gdo0_jam = 3;
-
-int mosi = 11;
-int miso = 12;
-clk = 13
+cs_rx = 10  
+cs_jam = 20  
+gdo0_rx = 2  
+gdo0_jam = 3  
+mosi = 11  
+miso = 12  
+clk = 13  
