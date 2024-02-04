@@ -192,7 +192,7 @@
 // Deselect (SPI) CC1101
 #define cc1101_Deselect()  if(chipSelectRX) digitalWrite(cs_rx, HIGH); else digitalWrite(cs_jam, HIGH)
 // Wait until SPI MISO line goes low
-#define wait_Miso() while(bitRead(PORT_SPI_MISO, BIT_SPI_MISO))
+#define wait_Miso() while(digitalRead(miso))
 // Wait until rx GDO0 line goes high
 #define wait_GDO0_high()  while(!get_GDO0_state())
 // Wait until rx GDO0 line goes low
@@ -204,17 +204,6 @@
 // Get Marcstate
 #define getMarcstate() (readStatusReg(CC1101_MARCSTATE) & 0x1F)
 
-//Defince gdo0_rx port/bit
-#define PORT_GDO0_RX  PIND
-#define BIT_GDO0_RX  2
-
-//Defince gdo0_jam port/bit
-#define PORT_GDO0_JAM  PIND
-#define BIT_GDO0_JAM  3
-
-//Define MISO port/bit
-#define PORT_SPI_MISO  PINB
-#define BIT_SPI_MISO  4
 
 /**
  * Define the CCPACKET class which will handle packets.
@@ -260,7 +249,16 @@ class CCPACKET
  */
 
 #include <SPI.h>
+#ifdef ESP32
+int cs_rx = 4;
+int cs_jam = 5;
+int gdo0_rx = 16;
+int gdo0_jam = 17;
 
+int mosi = 13;
+int miso = 12;
+int clk = 14;
+#else
 int cs_rx = 5;
 int cs_jam = 6;
 int gdo0_rx = 2;
@@ -268,7 +266,8 @@ int gdo0_jam = 3;
 
 int mosi = 11;
 int miso = 12;
-//clk = 13
+int clk = 13;
+#endif
 
 int pushButton = 4;
 
@@ -291,7 +290,11 @@ void setup()
   pinMode(pushButton, INPUT);
   
   Serial.begin(9600);
+#ifdef ESP32
+  SPI.begin(clk, miso, mosi, cs_jam);
+#else
   SPI.begin();
+#endif;
   delay(2000);
 
   chipSelectRX = false;
@@ -715,7 +718,7 @@ replaySecond();
 
   boolean get_GDO0_state()
   {
-    if(chipSelectRX) return bitRead(PORT_GDO0_RX, BIT_GDO0_RX); else return bitRead(PORT_GDO0_JAM, BIT_GDO0_JAM);
+    if(chipSelectRX) return digitalRead(gdo0_rx); else return digitalRead(gdo0_jam);
   }
 
   void setDefaultRegs() 

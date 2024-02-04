@@ -6,94 +6,113 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: Teensy 3.2 / 3.1, Platform=teensy3, Package=teensy
+	Hardware: ESP32 Dev Module, Platform=esp32, Package=esp32
 */
 
 #if defined(_VMICRO_INTELLISENSE)
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
-#define __HARDWARE_mk20dx256__
-#define __HARDWARE_MK20DX256__
-#define __MK20DX256__
-#define TEENSYDUINO 156
+#define __ESP32_esp32__
+#define __ESP32_ESP32__
+#define HAVE_CONFIG_H
+#define UNITY_INCLUDE_CONFIG_H
+#define WITH_POSIX
+#define _GNU_SOURCE
+#define ESP_PLATFORM
+#define _POSIX_READER_WRITER_LOCKS
+#define F_CPU 240000000L
 #define ARDUINO 108019
-#define ARDUINO_TEENSY32
-#define F_CPU 96000000
-#define USB_SERIAL
-#define LAYOUT_US_ENGLISH
+#define ARDUINO_ESP32_DEV
+#define ARDUINO_ARCH_ESP32
+#define ARDUINO_PARTITION_default
+#define ESP32
+#define CORE_DEBUG_LEVEL 0
+#define ARDUINO_RUNNING_CORE 1
+#define ARDUINO_EVENT_RUNNING_CORE 1
+#define ARDUINO_USB_CDC_ON_BOOT 0
 #define __cplusplus 201103L
+
+#define _Pragma(x)
 #undef __cplusplus
 #define __cplusplus 201103L
 
-
-#define __arm__
+#define __STDC__
 #define __ARM__
-#define  __attribute__(x)
-typedef void *__builtin_va_list;
+#define __arm__
+#define __inline__
+#define __asm__(...)
 #define __extension__
 #define __ATTR_PURE__
 #define __ATTR_CONST__
-#define __inline__
-#define __asm__(x)
 #define __volatile__
-#define NEW_H
-#undef _WIN32
-#define __STDC__ 
-//#define __GNUC__ 2
-//#define __GNUC_MINOR__ 5
-#define __ARM_ARCH_7EM__
 
-extern int at_quick_exit(void (*f)(void));
-int at_quick_exit(void (*f)(void)) {
-}
-extern int quick_exit(void (*f)(void));
-int quick_exit(void (*f)(void)) {
-}
+#define __ASM
+#define __INLINE
+#define __attribute__(noinline)
 
+//#define _STD_BEGIN
+//#define EMIT
+#define WARNING
+#define _Lockit
+#define __CLR_OR_THIS_CALL
+#define C4005
+//#define _NEW
 
+typedef bool _Bool;
+typedef int _read;
+typedef int _seek;
+typedef int _write;
+typedef int _close;
+typedef int __cleanup;
 
-#define __INT64_TYPE__ 8
-#define __INTPTR_TYPE__ 4
-#define __INT32_TYPE__ 4
+//#define inline 
 
-typedef long intptr_t;
-typedef long __intptr_t;
-typedef unsigned long __uintptr_t;
-typedef long __int32_t;
-typedef unsigned long __uint32_t;
-typedef unsigned short  __uint16_t;
-typedef short __int16_t;
-typedef unsigned short  __uint8_t;
-typedef short __int8_t;
-typedef unsigned long __uint64_t;
-typedef double __int64_t;
-typedef unsigned long uint64_t;
-typedef double int64_t;
-typedef unsigned short uint8_t;
-typedef short int8_t;
+#define __builtin_clz
+#define __builtin_clzl
+#define __builtin_clzll
+#define __builtin_labs
+#define __builtin_va_list
+typedef int __gnuc_va_list;
 
-typedef unsigned int uint16_t;
-typedef short int16_t;
-typedef long __int32_t;
-typedef unsigned long __uint32_t;
+#define __ATOMIC_ACQ_REL
 
-#define at_quick_exit(x)
+#define __CHAR_BIT__
+#define _EXFUN()
+
+typedef unsigned char byte;
+extern "C" void __cxa_pure_virtual() {;}
+
+typedef long __INTPTR_TYPE__ ;
+typedef long __UINTPTR_TYPE__ ;
+//typedef long __SIZE_TYPE__ 	;
+#define __SIZE_TYPE__ unsigned int
+typedef long __PTRDIFF_TYPE__;
+
+typedef long pthread_t;
+typedef long pthread_key_t;
+typedef long pthread_once_t;
+typedef long pthread_mutex_t;
+typedef long pthread_mutex_t;
+typedef long pthread_cond_t;
+
+#define __CHAR_BIT__ 1
+
+// Ensure ArduinoJSON Lib Intellisense works correctly
+#define ARDUINOJSON_ENABLE_STD_STREAM 0
 
 #include "arduino.h"
-#define abs(x) ((x)>0?(x):-(x))
-#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
-#define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
-#define radians(deg) ((deg)*DEG_TO_RAD)
-#define degrees(rad) ((rad)*RAD_TO_DEG)
-#define sq(x) ((x)*(x))
+#include <pins_arduino.h> 
 
-#define __asm__
+#define interrupts() sei()
+#define noInterrupts() cli()
 
-#define __disable_irq() __asm__ volatile("");
-#define __enable_irq()	__asm__ volatile("");
+#define ESP_LOGI(tag, ...)
 
-
+// Read Value from Register
+#define READ_PERI_REG(addr)
+// Write Value to Register
+#define WRITE_PERI_REG(addr,val)
 #include "RollJam_eliddell1.ino"
 #endif
 #endif
